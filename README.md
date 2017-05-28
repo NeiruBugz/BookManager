@@ -1,7 +1,7 @@
-# BookManager
-Tutorial CRUD application
-Using:
-  Spring MVC
-  Hibernate
-  MySQL
-  Maven
+## Technology components
+This project uses:
+* Maven
+* Spring MVC
+* JSP
+* Hibernate
+* MySQL
