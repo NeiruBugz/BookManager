@@ -39,14 +39,14 @@
             background-color: #f0f0f0;
         }
 
-        .tg .tg-4eph {
+        .tg {
             background-color: #f9f9f9
         }
     </style>
     <title>Title</title>
 </head>
 <body>
-<a href="../index.jsp">Back to Main menu</a>
+<a href="../../index.jsp">Back to Main menu</a>
 <br>
 <br>
 <h1>Book List</h1>
