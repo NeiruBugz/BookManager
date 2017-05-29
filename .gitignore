@@ -1,0 +1,13 @@
+# Intellij
+.idea/
+*.iml
+*.iws
+lib/
+src/test/
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
