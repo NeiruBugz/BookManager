@@ -5,6 +5,8 @@
 <%@ page session="false" %>
 <html>
 <head>
+    <title>Books Page</title>
+
     <style type="text/css">
         .tg {
             border-collapse: collapse;
@@ -39,17 +41,19 @@
             background-color: #f0f0f0;
         }
 
-        .tg {
+        .tg .tg-4eph {
             background-color: #f9f9f9
         }
     </style>
-    <title>Title</title>
 </head>
 <body>
-<a href="../../index.jsp">Back to Main menu</a>
-<br>
-<br>
+<a href="../../index.jsp">Back to main menu</a>
+
+<br/>
+<br/>
+
 <h1>Book List</h1>
+
 <c:if test="${!empty listBooks}">
     <table class="tg">
         <tr>
@@ -61,78 +65,81 @@
             <th width="60">Delete</th>
         </tr>
         <c:forEach items="${listBooks}" var="book">
-        <tr>
-            <td>${book.id}</td>
-            <td>${book.bookTitle}</td>
-            <td>${book.bookAuthor}</td>
-            <td>${book.price/100}.${book.price%100}</td>
-            <td><a href="<c:url value="/edit/${book.id}"/>">Edit</a></td>
-            <td><a href="<c:url value="/remove/${book.id}"/>">Remove</a></td>
-        </tr>
+            <tr>
+                <td>${book.id}</td>
+                <td><a href="/bookdata/${book.id}" target="_blank">${book.bookTitle}</a></td>
+                <td>${book.bookAuthor}</td>
+                <td>${book.price/100}${book.price%100}</td>
+                <td><a href="<c:url value='/edit/${book.id}'/>">Edit</a></td>
+                <td><a href="<c:url value='/remove/${book.id}'/>">Delete</a></td>
+            </tr>
         </c:forEach>
     </table>
 </c:if>
+
+
 <h1>Add a Book</h1>
-<c:url var="addAction" value="/books/add">
-    <form:form action="${addAction}" commandName="book">
-        <table>
-            <c:if test="${!empty book.bookTitle}">
-                <tr>
-                    <td>
-                        <form:label path="id">
-                            <spring:message text="ID"/>
-                        </form:label>
-                    </td>
-                    <td>
-                        <form:input path="id" readonly="true" size="8" disabled="true"/>
-                        <form:hidden path="id"/>
-                    </td>
-                </tr>
-            </c:if>
+
+<c:url var="addAction" value="/books/add"/>
+
+<form:form action="${addAction}" commandName="book">
+    <table>
+        <c:if test="${!empty book.bookTitle}">
             <tr>
                 <td>
-                    <form:label path="bookTitle">
-                        <spring:message text="Title"/>
+                    <form:label path="id">
+                        <spring:message text="ID"/>
                     </form:label>
                 </td>
                 <td>
-                    <form:input path="bookTitle"/>
+                    <form:input path="id" readonly="true" size="8" disabled="true"/>
+
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <form:label path="bookAuthor">
-                        <spring:message text="Author"/>
-                    </form:label>
-                </td>
-                <td>
-                    <form:input path="bookAuthor"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <form:label path="price">
-                        <spring:message text="Price"/>
-                    </form:label>
-                </td>
-                <td>
-                    <form:input path="price"/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <c:if test="${!empty book.bookTitle}">
-                        <input type="submit"
-                               value="<spring:message text="Edit Book"/>"/>
-                    </c:if>
-                    <c:if test="${empty book.bookTitle}">
-                        <input type="submit"
-                               value="<spring:message text="Add Book"/>"/>
-                    </c:if>
-                </td>
-            </tr>
-        </table>
-    </form:form>
-</c:url>
+        </c:if>
+        <tr>
+            <td>
+                <form:label path="bookTitle">
+                    <spring:message text="Title"/>
+                </form:label>
+            </td>
+            <td>
+                <form:input path="bookTitle"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form:label path="bookAuthor">
+                    <spring:message text="Author"/>
+                </form:label>
+            </td>
+            <td>
+                <form:input path="bookAuthor"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form:label path="price">
+                    <spring:message text="Price"/>
+                </form:label>
+            </td>
+            <td>
+                <form:input path="price"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <c:if test="${!empty book.bookTitle}">
+                    <input type="submit"
+                           value="<spring:message text="Edit Book"/>"/>
+                </c:if>
+                <c:if test="${empty book.bookTitle}">
+                    <input type="submit"
+                           value="<spring:message text="Add Book"/>"/>
+                </c:if>
+            </td>
+        </tr>
+    </table>
+</form:form>
 </body>
 </html>
